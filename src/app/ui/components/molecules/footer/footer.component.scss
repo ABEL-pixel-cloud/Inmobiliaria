@@ -1,0 +1,125 @@
+.footer {
+    background-color: transparent;
+    height: 100%;
+    margin: 0 80px auto;
+    font-family: 'Poppins', sans-serif;  
+    font-weight: 400;  
+    font-size: 13px;
+    
+  
+    // Contenedor principal del contenido
+    &__content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 100%;
+      height: 160px;
+      margin: 30px 16px 30px 0;
+    }
+  
+  
+  
+    // Columnas del footer
+    &__column {
+      flex: 1;
+      min-width: 288px;
+      height: 160px;
+      line-height: 16px;
+  
+      &-title {
+        font-weight: 400;
+        line-height: 13px;
+        color: rgba(0, 0, 0, 1);
+        margin-bottom: 10px;
+      }
+  
+      &--brand {
+        // Puedes agregar estilos especiales para la columna de marca si los necesitas
+      }
+    }
+  
+    // Estilo del nombre de la marca
+    &__brand-name {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+      color: #007bff;
+      margin-bottom: 5px;
+    }
+  
+    // Estilo del eslogan
+    &__brand-slogan {
+      color: rgba(75, 85, 99, 1);
+    }
+  
+    // Listas generales
+    &__list,
+    &__contact-list {
+      list-style: none;
+      padding: 0;
+    }
+  
+    // Ítems de listas
+    &__item,
+    &__contact-item {
+      height: 24px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      color: rgba(75, 85, 99, 1);
+    }
+  
+    // Enlaces del footer
+    &__link {
+      color: rgba(75, 85, 99, 1);
+      text-decoration: none;
+  
+      &:hover {
+        color: #007bff;
+      }
+    }
+  
+    // Íconos sociales con imágenes
+    &__social-icons {
+      display: flex;
+  
+      .footer__social-link {
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+  
+        img {
+          margin-top: 5px;
+          width: 16px;
+          height: 16px;
+          transition: transform 0.2s ease;
+  
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  
+    // Íconos de contacto con imágenes
+    &__icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+    }
+  
+    // Parte inferior del footer
+    &__bottom {
+      text-align: center;
+      border-top: 1px solid #ddd;
+      padding: 15px 0;
+      font-size: 13px;
+      color: #777;
+    }
+  
+    &__bottom-text {
+      color: rgba(75, 85, 99, 1);
+  
+      margin-top: 10px;
+    }
+  }

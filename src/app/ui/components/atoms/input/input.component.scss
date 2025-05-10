@@ -1,0 +1,22 @@
+
+input {
+    display: block;
+    padding: 0.5rem;
+    border: 1px solid rgba(229, 231, 235, 1);
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 10px;
+
+
+    &.primary {
+      font-family: Manrope;
+      font-weight: 400;
+      font-size: 14px;
+    }
+  }
+
+  input:focus {
+    outline: none; /* Elimina el borde de enfoque predeterminado */
+
+  }

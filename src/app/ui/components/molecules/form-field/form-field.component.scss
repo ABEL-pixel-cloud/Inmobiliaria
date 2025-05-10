@@ -1,0 +1,16 @@
+.formfield {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 7px;
+
+    
+    &.primary {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(55, 65, 81, 1);
+      line-height: 100%;
+      margin-bottom: 10px;
+    }
+  }

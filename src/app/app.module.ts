@@ -1,16 +1,38 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AtomsModule } from './ui/components/atoms/atoms.module';
+import { MoleculesModule } from './ui/components/molecules/molecules.module';
+import { OrganismsModule } from './ui/components/organisms/organisms.module';
+import { ToastrModule } from 'ngx-toastr';
+import { LayoutsModule } from './ui/components/layuouts/layouts.module';
+import { PagesModule } from './ui/pages/pages.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrganismsComponent } from './ui/components/organisms/organisms.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    OrganismsComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    AtomsModule,
+    MoleculesModule,
+    OrganismsModule,
+    ToastrModule.forRoot(),
+    LayoutsModule,
+    PagesModule,
+    BrowserAnimationsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

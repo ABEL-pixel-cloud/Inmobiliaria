@@ -30,7 +30,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
@@ -78,27 +79,12 @@
           "options": {
             "browserTarget": "createCategory:build"
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
-          }
         }
+        
       }
     }
+  },
+    "cli": {
+    "analytics": "5933b1ea-876a-43c4-ae2c-5e0f9690b0d8"
   }
 }

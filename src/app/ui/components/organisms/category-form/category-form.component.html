@@ -1,0 +1,58 @@
+<form [formGroup]="formUse" class="category-form">
+  <section class="category-form__title">
+    <h1 class="category-form__title-text">Crear categoría</h1>
+  </section>
+
+  <section class="category-form__div">
+    <div class="category-form__group category-form__group--input">
+      <app-form-field [label]="'Nombre de la Categoría'" [id]="'categoryName'">
+        <app-input
+          variant="primary"
+          class="category-form__input"
+          [control]="categoryName"
+          [type]="'text'"
+          [placeholder]="'Escribe el nombre de la categoría (máximo 50 caracteres)'"
+          [id]="'categoryName'"
+        ></app-input>
+      </app-form-field>
+      <div class="category-form__erros" *ngIf="categoryName.touched && categoryName.invalid">
+        <small *ngIf="categoryName.errors?.['required']" class="category-form__error">El nombre es obligatorio.</small>
+        <small *ngIf="categoryName.errors?.['maxlength']" class="error">Máximo 50 caracteres.</small>
+      </div>
+    </div>
+
+    <div class="category-form__group category-form__group--label">
+      <app-form-field [label]="'Descripción'" [id]="'categoryDescription'">
+        <app-textarea
+          variant="primary"
+          [placeholder]="'Descripción'"
+          [control]="categoryDescription"
+          [id]="'categoryDescription'"
+          class="category-form__textarea-atom"
+          maxlength="90"
+        ></app-textarea>
+      </app-form-field>
+      <div
+        class="category-form__errodescription"
+        *ngIf="categoryDescription.touched && categoryDescription.invalid"
+      >
+        <small *ngIf="categoryDescription.errors?.['required']" class="category-form__error"
+          >La descripción es obligatoria.</small
+        >
+        <small *ngIf="categoryDescription.errors?.['maxlength']" class="error">Máximo 90 caracteres.</small>
+      </div>
+    </div>
+
+    <section class="category-form__actions">
+      <app-button
+        [text]="'Crear'"
+        (buttonClick)="sendData()"
+        variant="primary"
+        [disabled]="!formUse.valid"
+      >
+        Crear
+      </app-button>
+    </section>
+  </section>
+  
+</form>

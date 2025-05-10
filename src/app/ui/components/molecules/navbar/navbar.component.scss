@@ -1,0 +1,47 @@
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 57px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px 5px 0 0;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+  
+    
+  
+  
+  
+  
+    &__left {
+      margin-left: 20px;
+      
+      & .top-nav__brand {
+        font-weight: 700;
+        font-size: 18px;
+        color: rgba(0, 0, 0, 1);
+        &--highlight {
+          color: rgba(37, 99, 235, 1);
+        }
+      }
+    }
+  
+    &__right {
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+  
+      & .top-nav__welcome {
+        font-size: 14px;
+        color: rgba(107, 114, 128, 1);
+      }
+  
+      & .top-nav__avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+    }
+  }
