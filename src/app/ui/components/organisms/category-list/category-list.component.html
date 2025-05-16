@@ -1,0 +1,13 @@
+<div class="categories">
+  <app-table   
+    [categories]="categories"  
+    [currentPage]="currentPage"
+    [pageSize]="pageSize"> > 
+  </app-table>
+<div class="categories__pagination">
+    <app-pagination 
+   [pagination]="paginationData"
+   (pageChanged)="goToPage($event)">> 
+  </app-pagination>
+</div>
+</div>

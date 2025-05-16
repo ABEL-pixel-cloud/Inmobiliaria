@@ -1,0 +1,23 @@
+<div class="pagination" >
+  <app-button
+    [text]="'<'"
+    [disabled]="!pagination.hasPrevious"
+    variant="secondary"
+    (buttonClick)="previousPage()"
+  ></app-button>
+
+  <app-button
+    *ngFor="let page of visiblePages"
+    [text]="page > 0 ? page.toString() : (page === -1 ? '...' : '...')"
+    [disabled]="page <= 0"
+    [variant]="page > 0 && page === pagination.currentPage + 1 ? 'third' : 'secondary'"
+    (buttonClick)="page > 0 && goToPage(page)"
+  ></app-button>
+  
+  <app-button
+    [text]="'>'"
+    [disabled]="!pagination.hasNext"
+    variant="secondary"
+    (buttonClick)="nextPage()"
+  ></app-button>
+</div>

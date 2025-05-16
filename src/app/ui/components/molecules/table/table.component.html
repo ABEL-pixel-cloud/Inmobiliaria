@@ -1,0 +1,23 @@
+<div class="categories">
+  <h2 class="categories__title">Categorías existentes</h2>
+
+  <!-- Encabezado de la tabla con el elemento <caption> -->
+  <table class="categories__table">
+    <thead class="categories__table-head">
+      <tr class="categories__table-row">
+        <th class="categories__table-header">ID</th>
+        <th class="categories__table-header">Nombre</th>
+        <th class="categories__table-header">Descripción</th>
+        <th class="categories__table-header">Acciones</th>
+      </tr>
+    </thead>
+    <tbody class="categories__table-body">
+      <tr class="categories__table-row" *ngFor="let category of categories; let i = index">
+        <td class="categories__table-cell">#CAT-{{ currentPage * pageSize + i + 1 }}</td>
+        <td class="categories__table-cell">{{ category.name }}</td>
+        <td class="categories__table-cell">{{ category.description }}</td>
+        <td class="categories__table-cell"><app-icon iconName="🗑️" ></app-icon></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

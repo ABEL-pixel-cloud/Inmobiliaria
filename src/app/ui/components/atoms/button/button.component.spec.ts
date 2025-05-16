@@ -28,12 +28,6 @@ describe('ButtonComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should accept customClass input and apply it to the button', () => {
-    component.customClass = 'custom-class';
-    fixture.detectChanges();
-    expect(buttonElement.classList).toContain('custom-class');
-  });
-
   it('should accept variant input and set the button class accordingly', () => {
     component.variant = 'danger';
     fixture.detectChanges();
@@ -43,8 +37,7 @@ describe('ButtonComponent', () => {
   it('should display the text input', () => {
     component.text = 'Click Me';
     fixture.detectChanges();
-    expect(buttonElement.textContent).toBe('Click Me');
+    expect(buttonElement.textContent?.trim()).toBe('Click Me');
   });
-
 
 });

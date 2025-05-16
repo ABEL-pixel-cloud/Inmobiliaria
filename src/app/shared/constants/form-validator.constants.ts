@@ -1,0 +1,6 @@
+export const FORM_VALIDATORS = {
+  CATEGORY: {
+    MAX_NAME_LENGTH: 50,
+    MAX_DESCRIPTION_LENGTH: 90,
+  },
+};

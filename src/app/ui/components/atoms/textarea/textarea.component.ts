@@ -6,12 +6,11 @@ import { FormControl } from '@angular/forms';
   templateUrl: './textarea.component.html',
   styleUrls: ['./textarea.component.scss']
 })
-export class TextareaComponent {
+export class TextareaComponent implements OnInit  {
   @Input() id!: string;
   @Input() placeholder!: string;
-  @Input() control!: FormControl<string | null>;
-  @Input() customClass = '';
-  @Input() variant: 'primary' | 'secondary' | 'danger' = 'primary';
+  @Input() control!: FormControl;
+  @Input() variant: 'primary' = 'primary'; 
 
   count = 0;
 

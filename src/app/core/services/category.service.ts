@@ -1,15 +1,18 @@
-import { HttpClient , HttpErrorResponse} from '@angular/common/http';
+import { HttpClient , HttpErrorResponse,HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable,throwError  } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Category } from '../models/category';
+import { CategoryResponse } from '../models/category';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CategoryService {
 
   private apiUrl = 'http://localhost:8081/api/v1/category/create-category';
+  private apiUrl2 = 'http://localhost:8081/api/v1/category/list-category';
 
   constructor(private http: HttpClient) { }
 
@@ -19,6 +22,18 @@ export class CategoryService {
         catchError(this.handleError)
       );
   }
+  
+   getCategories(page: number, size: number, orderAsc: boolean): Observable<CategoryResponse> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString())
+      .set('orderAsc', orderAsc.toString());
+    const url = this.apiUrl2; 
+    return this.http.get<CategoryResponse>(url, { params }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
 
    private handleError(error: HttpErrorResponse) {
 

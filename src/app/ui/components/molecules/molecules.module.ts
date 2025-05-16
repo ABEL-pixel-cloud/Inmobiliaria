@@ -7,6 +7,9 @@ import { AtomsModule } from '../atoms/atoms.module';
 import { FormFieldComponent } from './form-field/form-field.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { TableComponent } from './table/table.component';
+import { PaginationComponent } from './pagination/pagination.component';
+
 
 
 
@@ -14,8 +17,10 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
   declarations: [
     FooterComponent,
     SidebarComponent,
-    NavbarComponent,
-    FormFieldComponent
+    NavbarComponent,                      
+    FormFieldComponent,
+    TableComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +32,10 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     FooterComponent,
     SidebarComponent,
     NavbarComponent,
-    FormFieldComponent
+    FormFieldComponent,
+    TableComponent,
+    PaginationComponent
+    
   ]
 })
 export class MoleculesModule { }

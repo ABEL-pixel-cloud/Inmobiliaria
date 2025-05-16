@@ -9,11 +9,4 @@ import { Component,Input  } from '@angular/core';
 export class FormFieldComponent {
   @Input() label!: string;
   @Input() id!: string;
-  @Input() formControlName!: string;
-  @Input() variant: string = '';
-
-
-
-
-
 }

@@ -4,8 +4,7 @@
     class="form-textarea__input"
     [placeholder]="placeholder"
     [formControl]="control"
-    [class.form-textarea__input--primary]="variant === 'primary'"
-    [ngClass]="[ customClass]"
+    [ngClass]="[variant]"
     maxlength="90"
   ></textarea>
   <p class="form-textarea__count">{{ count }}/90</p>

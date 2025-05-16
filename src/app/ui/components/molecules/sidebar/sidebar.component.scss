@@ -1,7 +1,6 @@
 .side-nav {
     width: 255px; /* Ejemplo de ancho */
     height: 99%;
-    /* Ejemplo de color de fondo */
     margin: 10px auto 0px auto;
     position: relative;
     background-color: rgba(255, 255, 255, 1);
@@ -26,16 +25,26 @@
       color: rgba(75, 85, 99, 1);
       border-radius: 6px;
       display: flex; /* Para alinear el icono y el texto */
-      align-items: center; /* Centra verticalmente los items flex hijos */
+      align-items: center; 
       line-height: 36px;
       cursor: pointer;
       margin-left: 10px;
   
       &--active {
+        color: rgba(37, 99, 235, 1); 
         background: rgba(239, 246, 255, 1);
-      
-  
       }
+      
+    }
+
+    &__link{
+      text-decoration: none;
+      color: inherit;
+
+    &:active {
+       color: inherit;
+    }
+  
     }
   
     &__icon {

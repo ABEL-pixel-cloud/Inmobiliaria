@@ -8,6 +8,9 @@ import { InputComponent } from './input/input.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { ButtonComponent } from './button/button.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TextComponent } from './text/text.component';
+import { IconComponent } from './icon/icon.component';
+
 
 
 
@@ -16,9 +19,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     LabelComponent,
     InputComponent,
-    LabelComponent,
     TextareaComponent,
-    ButtonComponent
+    ButtonComponent,
+    TextComponent,
+    IconComponent,
   ],
   imports: [
     CommonModule,
@@ -29,7 +33,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     InputComponent,
     LabelComponent,
     TextareaComponent,
-    ButtonComponent
+    ButtonComponent,
+    TextComponent,
+    IconComponent
+
   ]
 })
 export class AtomsModule { }

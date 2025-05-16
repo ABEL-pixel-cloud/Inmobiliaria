@@ -1,5 +1,5 @@
-import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -10,8 +10,6 @@ export class InputComponent {
   @Input() id!: string;
   @Input() type: string = "text";
   @Input() placeholder!: string;
-  @Input() value!: string;
   @Input() control!: FormControl;
-  @Input() customClass = '';
-  @Input() variant: 'primary' | 'secondary' | 'danger' = 'primary';
+  @Input() variant: 'primary' = 'primary'; 
 }

@@ -4,78 +4,63 @@ import { FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 describe('TextareaComponent', () => {
-  let component: TextareaComponent;
+  let componente: TextareaComponent;
   let fixture: ComponentFixture<TextareaComponent>;
-  let textareaElement: HTMLTextAreaElement;
+  let elementoTextarea: HTMLTextAreaElement;
 
- beforeEach(async () => {
-  await TestBed.configureTestingModule({
-    declarations: [ TextareaComponent ],
-    imports: [ ReactiveFormsModule ],
-  }).compileComponents();
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [TextareaComponent],
+      imports: [ReactiveFormsModule],
+    }).compileComponents();
 
-  fixture = TestBed.createComponent(TextareaComponent);
-  component = fixture.componentInstance;
+    fixture = TestBed.createComponent(TextareaComponent);
+    componente = fixture.componentInstance;
 
+    componente.control = new FormControl('');
 
-  component.control = new FormControl('');
-
-  fixture.detectChanges();
-  textareaElement = fixture.nativeElement.querySelector('textarea');
-});
-
-  it('should create the textarea component', () => {
-    expect(component).toBeTruthy();
+    fixture.detectChanges();
+    elementoTextarea = fixture.nativeElement.querySelector('textarea');
   });
 
-  it('should accept id input and assign it to textarea', () => {
-    component.id = 'test-id';
-    fixture.detectChanges();
-    expect(textareaElement.id).toBe('test-id');
+  it('debería crear el componente textarea', () => {
+    expect(componente).toBeTruthy();
   });
 
-  it('should accept placeholder input and assign it to textarea', () => {
-    component.placeholder = 'Enter text';
+  it('debería aceptar la entrada id y asignarla al textarea', () => {
+    componente.id = 'id-prueba';
     fixture.detectChanges();
-    expect(textareaElement.placeholder).toBe('Enter text');
+    expect(elementoTextarea.id).toBe('id-prueba');
   });
 
-  it('should accept customClass input and apply it to textarea', () => {
-    component.customClass = 'custom-class';
+  it('debería aceptar el placeholder y asignarlo al textarea', () => {
+    componente.placeholder = 'Ingrese texto';
     fixture.detectChanges();
-    expect(textareaElement.classList).toContain('custom-class');
+    expect(elementoTextarea.placeholder).toBe('Ingrese texto');
   });
 
-  it('should accept variant input and apply the correct class to textarea', () => {
-  component.variant = 'danger';
-  component.control = new FormControl('');
-  fixture.detectChanges();
 
-  const textareaElement: HTMLTextAreaElement = fixture.nativeElement.querySelector('textarea');
-  expect(textareaElement.classList).toContain('form-textarea__input--danger');
-});
-
-  it('should track the character count when control value changes', () => {
-    component.control = new FormControl('');
-    component.ngOnInit();
-    component.control.setValue('Test');
+  it('debería contar caracteres cuando el valor del control cambia', () => {
+    componente.control = new FormControl('');
+    componente.ngOnInit();
+    componente.control.setValue('Prueba');
     fixture.detectChanges();
-    expect(component.count).toBe(4);
+    expect(componente.count).toBe(6);
   });
 
-  it('should handle an empty control value and set count to 0', () => {
-    component.control = new FormControl('');
-    component.ngOnInit();
-    component.control.setValue('');
+  it('debería manejar un valor vacío y establecer el contador en 0', () => {
+    componente.control = new FormControl('');
+    componente.ngOnInit();
+    componente.control.setValue('');
     fixture.detectChanges();
-    expect(component.count).toBe(0);
+    expect(componente.count).toBe(0);
   });
 
-  it('should update the count when control value changes dynamically', () => {
-    component.control = new FormControl('');
-    component.ngOnInit();
-    component.control.setValue('Another test');
+  it('debería actualizar el contador cuando el valor del control cambia dinámicamente', () => {
+    componente.control = new FormControl('');
+    componente.ngOnInit();
+    componente.control.setValue('Otra prueba');
     fixture.detectChanges();
-    expect(component.count).toBe(12);
+    expect(componente.count).toBe(11);
   });
 });

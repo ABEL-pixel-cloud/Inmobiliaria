@@ -1,8 +1,11 @@
+
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Category } from '../../../../core/models/category';
 import { CategoryService } from 'src/app/core/services/category.service';
+import { CategoryEventService } from 'src/app/core/services/categoryevent.service';
+import { FORM_VALIDATORS } from 'src/app/shared/constants/form-validator.constants';
 
 
 @Component({
@@ -13,52 +16,49 @@ import { CategoryService } from 'src/app/core/services/category.service';
 
 export class CategoryFormComponent { 
 
+ categoryForm: FormGroup;
 
-  formUse: FormGroup;
+  constructor(
+    private categoryService: CategoryService,
+    private toastr: ToastrService,
+    private formBuilder: FormBuilder,
+    private  categoryEventService: CategoryEventService,
+  ) {
+    this.categoryForm = this.buildForm();
+  }
 
-  constructor(private categoryService: CategoryService, private toastr: ToastrService, private formbuilder: FormBuilder) {
-    this.formUse = this.formbuilder.group({
-      name: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(49),
-      ]),
-      description: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(89),
-      ]),
-    })
+  private buildForm(): FormGroup {
+    return this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(FORM_VALIDATORS.CATEGORY.MAX_NAME_LENGTH)]],
+      description: ['', [Validators.required, Validators.maxLength(FORM_VALIDATORS.CATEGORY.MAX_DESCRIPTION_LENGTH)]],
+    });
   }
 
   get categoryName(): FormControl {
-    return this.formUse.get('name') as FormControl;
+    return this.categoryForm.get('name') as FormControl;
   }
 
   get categoryDescription(): FormControl {
-    return this.formUse.get('description') as FormControl;
+    return this.categoryForm.get('description') as FormControl;
   }
 
   sendData(): void {
-
-    if (!this.formUse.valid) {
-      this.formUse.markAllAsTouched();
+    if (this.categoryForm.invalid) {
+      this.categoryForm.markAllAsTouched();
       return;
     }
 
-    const payload: Category = {
-      name: this.formUse.value.name,
-      description: this.formUse.value.description
-    }
+    const newCategory  = this.categoryForm.value as Category;
 
-
-    this.categoryService.postData(payload).subscribe({
-      next: (response: any) => {
-        this.toastr.success(response?.message);
+    this.categoryService.postData(newCategory ).subscribe({
+      next: () => {
+        this.toastr.success('Categoría creada exitosamente');
+        this.categoryForm.reset();
+        this.categoryEventService.notifyCategoryCreated();
       },
-      error: (e: any) => {
+      error: (e) => {
         this.toastr.error(e.message);
-      }
+      },
     });
-
   }
-
-}
+} 
