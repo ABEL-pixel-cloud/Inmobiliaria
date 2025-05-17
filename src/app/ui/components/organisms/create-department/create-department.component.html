@@ -1,0 +1,52 @@
+<form [formGroup]="departmentform" class="department-form">
+  <section class="department-form__title">
+    <h1 class="department-form__title-text">Crear Departamento</h1>
+  </section>
+
+  <section class="department-form__section">
+  <div class="department-form__group department-form__group--input">
+    <app-form-field [label]="'Nombre del Departamento'" [id]="'departmentName'">
+      <app-input
+        variant="primary"
+        [type]="'text'"
+        [placeholder]="'Nombre del departamento'"
+        [id]="'departmentName'"
+        class="department-form__input"
+        [control]="departmentName"
+      ></app-input>
+    </app-form-field>
+      <div class="department-form__errors" *ngIf="departmentName.touched && departmentName.invalid">
+        <small *ngIf="departmentName.errors?.['required']" class="department-form__error">El nombre es obligatorio.</small>
+        <small *ngIf="departmentName.errors?.['maxlength']" class="error">Máximo 50 caracteres.</small>
+      </div>
+  </div>
+    <div class="department-form__group department-form__group--label">
+    <app-form-field [label]="'Descripción del Departamento'" [id]="'departmentDescription'">
+      <app-textarea
+        variant="primary"
+        [placeholder]="'Descripción del departamento'"
+        [control]="departmentDescription"
+        [id]="'departmentDescription'"
+        class="department-form__textarea"
+      ></app-textarea>
+    </app-form-field>
+        <div
+        class="department-form__errordescription"
+        *ngIf="departmentDescription.touched && departmentDescription.invalid">
+        <small *ngIf="departmentDescription.errors?.['required']" class="department-form__error">La descripción es obligatoria.</small>
+        <small *ngIf="departmentDescription.errors?.['maxlength']" class="error">Máximo 90 caracteres.</small>
+      </div>
+    </div>
+    <section class="department-form__actions">
+      <app-button
+        [text]="'Crear'"
+        (buttonClick)="sendData()"
+        variant="primary"
+        [disabled]="!departmentform.valid">
+        Crear
+      </app-button>
+    </section>
+  </section>
+
+  
+</form>

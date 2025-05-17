@@ -8,6 +8,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { OrganismsModule } from '../components/organisms/organisms.module';
 import { MoleculesModule } from '../components/molecules/molecules.module';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { CreateUbicationComponent } from './admin/create-ubication/create-ubication.component';
 
 
 
@@ -18,6 +19,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
   declarations: [
     CreateCategoryComponent,
     DashboardComponent,
+    CreateUbicationComponent,
  
   ],
   imports: [

@@ -13,6 +13,7 @@
           class="category-form__input"
           [control]="categoryName"
           [id]="'categoryName'"
+            aria-labelledby="categoryName-label"
         ></app-input>
       </app-form-field>
       <div class="category-form__erros" *ngIf="categoryName.touched && categoryName.invalid">

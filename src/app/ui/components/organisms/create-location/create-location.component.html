@@ -1,0 +1,52 @@
+<form [formGroup]="locationform" class="location-form">
+  <section class="location-form__title">
+    <h1 class="location-form__title-text">Crear Ubicación</h1>
+  </section>
+
+  <section class="location-form__section">
+
+    <div class="location-form__group  location-form__group--label" >
+      <app-form-field [label]="'ciudad'" [id]="'locationSelect'">
+        <app-select
+          [id]="'locationSelect'"
+          [options]="cities"
+          [displayProperty]="'name'"
+          [valueProperty]="'id'"
+          [control]="city"
+          [placeholder]="'Selecciona una ciudad'"
+        >
+        </app-select>
+      </app-form-field>
+      <div class="location-form__error" *ngIf="city?.touched && city?.invalid">
+        <small *ngIf="city.errors?.['required']">Seleccionar un departamento es obligatorio.</small>
+      </div>
+    </div>
+
+    <div class="location-form__group location-form__group--input">
+      <app-form-field [label]="'nombre y direccion'" [id]="'locationName'">
+        <app-input
+          variant="primary"
+          [type]="'text'"
+          [placeholder]="'Nombre del barrio'"
+          [id]="'locationName'"
+          class="location-form__input"
+          [control]="locationName"
+        ></app-input>
+      </app-form-field>
+      <div class="location-form__errors" *ngIf="locationName.touched && locationName.invalid">
+        <small *ngIf="locationName.errors?.['required']" class="location-form__error">El nombre es obligatorio.</small>
+        <small *ngIf="locationName.errors?.['maxlength']" class="error">Máximo 50 caracteres.</small>
+      </div>
+    </div>
+   
+    <section class="location-form__actions">
+      <app-button
+        [text]="'Crear'"
+        (buttonClick)="createLocation()"
+        variant="primary"
+        [disabled]="!locationform.valid">
+        Crear
+      </app-button>
+    </section>
+  </section>
+</form>

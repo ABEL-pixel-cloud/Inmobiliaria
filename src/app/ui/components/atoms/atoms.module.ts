@@ -10,7 +10,8 @@ import { ButtonComponent } from './button/button.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextComponent } from './text/text.component';
 import { IconComponent } from './icon/icon.component';
-
+import { SelectComponent } from './select/select.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -23,11 +24,13 @@ import { IconComponent } from './icon/icon.component';
     ButtonComponent,
     TextComponent,
     IconComponent,
+    SelectComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule
   ],
   exports: [
     InputComponent,
@@ -35,7 +38,9 @@ import { IconComponent } from './icon/icon.component';
     TextareaComponent,
     ButtonComponent,
     TextComponent,
-    IconComponent
+    IconComponent,
+    SelectComponent,
+    NgSelectModule
 
   ]
 })

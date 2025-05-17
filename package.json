@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@ng-select/ng-select": "^9.1.0",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -38,12 +39,12 @@
     "ts-jest": "^29.3.2",
     "typescript": "~5.1.3"
   },
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "<rootDir>/src/environments/",
-      "<rootDir>/src/polyfills/",
-      "<rootDir>/src/assets/",
-      "\\.module\\.ts$",
-      "\\.component\\.html$"
-    ]
+  "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    "<rootDir>/src/environments/",
+    "<rootDir>/src/polyfills/",
+    "<rootDir>/src/assets/",
+    "\\.module\\.ts$",
+    "\\.component\\.html$"
+  ]
 }

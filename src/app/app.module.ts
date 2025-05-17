@@ -13,11 +13,15 @@ import { LayoutsModule } from './ui/components/layuouts/layouts.module';
 import { PagesModule } from './ui/pages/pages.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrganismsComponent } from './ui/components/organisms/organisms.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { AtomsComponent } from './ui/components/atoms/atoms.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    AtomsComponent,
+    OrganismsComponent,
     OrganismsComponent,
 
   ],
@@ -32,6 +36,7 @@ import { OrganismsComponent } from './ui/components/organisms/organisms.componen
     LayoutsModule,
     PagesModule,
     BrowserAnimationsModule,
+    NgSelectModule
     
   ],
   providers: [],

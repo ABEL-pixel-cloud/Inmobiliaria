@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateCategoryComponent } from './ui/pages/admin/create-category/create-category.component';
 import { AdminLayoutComponent } from './ui/components/layuouts/admin-layout/admin-loyout.component';
 import { DashboardComponent } from './ui/pages/admin/dashboard/dashboard.component';
+import { CreateUbicationComponent } from './ui/pages/admin/create-ubication/create-ubication.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,10 @@ const routes: Routes = [
      {
       path: 'dashboard',
       component: DashboardComponent // Esta es la page que contiene <app-category-form>
+    },
+         {
+      path: 'create-ubication',
+      component: CreateUbicationComponent // Esta es la page que contiene <app-category-form>
     },
   
   ]

@@ -7,6 +7,9 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { MoleculesModule } from "../molecules/molecules.module";
+import { CreateDepartmentComponent } from './create-department/create-department.component';
+import { CreateCityComponent } from './create-city/create-city.component';
+import { CreateLocationComponent } from './create-location/create-location.component';
 
 
 
@@ -17,6 +20,9 @@ import { MoleculesModule } from "../molecules/molecules.module";
   
     CategoryFormComponent,
     CategoryListComponent,
+    CreateDepartmentComponent,
+    CreateCityComponent,
+    CreateLocationComponent,
   
   ],
   imports: [
@@ -31,6 +37,9 @@ import { MoleculesModule } from "../molecules/molecules.module";
   exports: [
     CategoryFormComponent,
     CategoryListComponent,
+    CreateDepartmentComponent,
+    CreateCityComponent,
+    CreateLocationComponent,
   ]
  
 })

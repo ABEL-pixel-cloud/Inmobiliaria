@@ -9,8 +9,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { TableComponent } from './table/table.component';
 import { PaginationComponent } from './pagination/pagination.component';
-
-
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -26,7 +25,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     CommonModule,
     RouterModule,
     AppRoutingModule,
-    AtomsModule
+    AtomsModule,
+    NgSelectModule
   ],
   exports: [
     FooterComponent,

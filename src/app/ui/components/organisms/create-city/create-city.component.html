@@ -1,0 +1,69 @@
+<form [formGroup]="cityform" class="city-form">
+  <section class="city-form__title">
+    <h1 class="city-form__title-text">Crear Ciudad</h1>
+  </section>
+
+  <section class="city-form__section">
+
+      <div class="city-form__group  city-form__group--label" >
+      <app-form-field [label]="'Departamento'" [id]="'departmentSelect'">
+         <app-select
+          [id]="'departmentSelect'"
+          [options]="departments"
+          [displayProperty]="'name'"
+          [valueProperty]="'id'"
+          [control]="department"
+          [placeholder]="'Selecciona un departamento'"
+          >
+    
+        </app-select>
+      </app-form-field>
+      <div class="city-form__error" *ngIf="department?.touched && department?.invalid">
+        <small *ngIf="department.errors?.['required']">Seleccionar un departamento es obligatorio.</small>
+      </div>
+    </div>
+    
+    <div class="city-form__group city-form__group--input">
+      <app-form-field [label]="'Nombre de la Ciudad'" [id]="'cityName'">
+        <app-input
+          variant="primary"
+          [type]="'text'"
+          [placeholder]="'Nombre de la ciudad'"
+          [id]="'cityName'"
+          class="city-form__input"
+          [control]="cityName"
+        ></app-input>
+      </app-form-field>
+      <div class="city-form__errors" *ngIf="cityName.touched && cityName.invalid">
+        <small *ngIf="cityName.errors?.['required']" class="city-form__error">El nombre es obligatorio.</small>
+        <small *ngIf="cityName.errors?.['maxlength']" class="error">Máximo 50 caracteres.</small>
+      </div>
+    </div>
+    <div class="city-form__group city-form__group--label">
+      <app-form-field [label]="'Descripción de la Ciudad'" [id]="'cityDescription'">
+        <app-textarea
+          variant="primary"
+          [placeholder]="'Descripción de la ciudad'"
+          [control]="cityDescription"
+          [id]="'cityDescription'"
+          class="city-form__textarea"
+        ></app-textarea>
+      </app-form-field>
+      <div
+        class="city-form__errordescription"
+        *ngIf="cityDescription.touched && cityDescription.invalid">
+        <small *ngIf="cityDescription.errors?.['required']" class="city-form__error">La descripción es obligatoria.</small>
+        <small *ngIf="cityDescription.errors?.['maxlength']" class="error">Máximo 90 caracteres.</small>
+      </div>
+    </div>
+    <section class="city-form__actions">
+      <app-button
+        [text]="'Crear'"
+        (buttonClick)="createCity()"
+        variant="primary"
+        [disabled]="!cityform.valid">
+        Crear
+      </app-button>
+    </section>
+  </section>
+</form>
