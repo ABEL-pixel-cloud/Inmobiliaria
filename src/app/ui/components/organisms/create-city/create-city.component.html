@@ -15,10 +15,9 @@
           [control]="department"
           [placeholder]="'Selecciona un departamento'"
           >
-    
         </app-select>
       </app-form-field>
-      <div class="city-form__error" *ngIf="department?.touched && department?.invalid">
+      <div class="city-form__errors" *ngIf="department?.touched && department?.invalid">
         <small *ngIf="department.errors?.['required']">Seleccionar un departamento es obligatorio.</small>
       </div>
     </div>

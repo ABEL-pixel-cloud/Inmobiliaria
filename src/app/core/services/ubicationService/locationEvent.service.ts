@@ -10,9 +10,13 @@ export class LocationEventService {
 
   private cityCreatedSource = new Subject<void>();
 
+  private locationCreatedSource = new Subject<void>();
+
   departmentCreated$ = this.departmentCreatedSource.asObservable();
 
   cityCreated$ = this.cityCreatedSource.asObservable();
+
+  locationCreated$ = this.locationCreatedSource.asObservable();
 
   notifyDepartmentCreated() {
     this.departmentCreatedSource.next();
@@ -21,4 +25,9 @@ export class LocationEventService {
   notifyCityCreated() {
     this.cityCreatedSource.next();
   }
+
+  notifyLocationCreated() {
+    this.locationCreatedSource.next();
+  }
+
 }

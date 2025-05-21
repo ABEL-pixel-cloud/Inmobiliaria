@@ -1,4 +1,3 @@
-
 import { CityService } from './../../../../core/services/ubicationService/city.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -17,16 +16,15 @@ import { LocationEventService } from 'src/app/core/services/ubicationService/loc
 })
 export class CreateLocationComponent implements OnInit {
 
-   cities: cityModel[] = [];
-   locationform: FormGroup;
+  cities: cityModel[] = [];
+  locationform: FormGroup;
 
   constructor(
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
-    private LocationService:LocationService,
-    private CityService:CityService,
-    private LocationEventService:LocationEventService
-
+    private LocationService: LocationService,
+    private CityService: CityService,
+    private LocationEventService: LocationEventService
   ) {
     this.locationform = this.buildForm();
   }
@@ -46,52 +44,48 @@ export class CreateLocationComponent implements OnInit {
     });
   }
 
-private loadCities(): void {
-  this.CityService.getCities().subscribe({
-    next: (cities) => {
-      this.cities = cities;
-    },
-    error: () => {
-      this.toastr.error('Error al cargar ciudades');
-    }
-  });
-}
+  private loadCities(): void {
+    this.CityService.getCities().subscribe({
+      next: (cities) => {
+        this.cities = cities;
+      },
+      error: () => {
+        this.toastr.error('Error al cargar ciudades');
+      }
+    });
+  }
 
   get locationName(): FormControl {
     return this.locationform.get('name') as FormControl;
   }
 
-
   get city() {
     return this.locationform.get('city') as FormControl;
   }
 
-
-
   createLocation(): void {
-  if (this.locationform.invalid) {
-    this.locationform.markAllAsTouched();
-    return;
+    if (this.locationform.invalid) {
+      this.locationform.markAllAsTouched();
+      return;
+    }
+
+    const formValue = this.locationform.value;
+
+    const newLocation: locationModel = {
+      barrio: formValue.name,
+      city: formValue.city
+    };
+
+    this.LocationService.postLocation(newLocation).subscribe({
+      next: () => {
+        this.toastr.success('Ubicacion creada exitosamente');
+        this.locationform.reset();
+        this.LocationEventService.notifyLocationCreated();
+      },
+      error: (e) => {
+        this.toastr.error(e.message);
+      },
+    });
   }
-
-  const formValue = this.locationform.value;
-
-
-
-  const newLocation: locationModel = {
-    barrio: formValue.name,
-    city: formValue.city
-  };
-
-  this.LocationService.postLocation(newLocation).subscribe({
-    next: () => {
-      this.toastr.success('Ubicacion  creada exitosamente');
-      this.locationform.reset();
-    },
-    error: (e) => {
-      this.toastr.error(e.message);
-    },
-  });
-}
 
 }

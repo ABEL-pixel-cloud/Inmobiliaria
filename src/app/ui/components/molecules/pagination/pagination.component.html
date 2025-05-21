@@ -1,4 +1,4 @@
-<div class="pagination" >
+<div class="pagination" *ngIf="pagination" >
   <app-button
     [text]="'<'"
     [disabled]="!pagination.hasPrevious"

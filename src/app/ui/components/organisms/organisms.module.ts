@@ -10,6 +10,7 @@ import { MoleculesModule } from "../molecules/molecules.module";
 import { CreateDepartmentComponent } from './create-department/create-department.component';
 import { CreateCityComponent } from './create-city/create-city.component';
 import { CreateLocationComponent } from './create-location/create-location.component';
+import { UbicationListComponent } from './ubication-list/ubication-list.component';
 
 
 
@@ -23,6 +24,7 @@ import { CreateLocationComponent } from './create-location/create-location.compo
     CreateDepartmentComponent,
     CreateCityComponent,
     CreateLocationComponent,
+    UbicationListComponent,
   
   ],
   imports: [
@@ -40,6 +42,7 @@ import { CreateLocationComponent } from './create-location/create-location.compo
     CreateDepartmentComponent,
     CreateCityComponent,
     CreateLocationComponent,
+    UbicationListComponent
   ]
  
 })

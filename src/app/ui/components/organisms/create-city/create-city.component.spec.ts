@@ -126,7 +126,7 @@ describe('CreateCityComponent', () => {
     expect(mockToastr.error).toHaveBeenCalledWith('Error message');
   });
   it('should show error toastr when getDepartments fails', fakeAsync(() => {
-  // Mock que getDepartments falla con un error con message
+
   mockDepartmentService.getDepartments.mockReturnValue(
     throwError(() => ({ message: 'Error al cargar departamentos' }))
   );

@@ -27,4 +27,11 @@ describe('LocationEventService', () => {
     });
     service.notifyCityCreated();
   });
+
+   it('should emit when notifyLocationCreated is called', (done) => {
+    service.locationCreated$.subscribe(() => {
+      done();
+    });
+    service.notifyLocationCreated();
+  });
 });

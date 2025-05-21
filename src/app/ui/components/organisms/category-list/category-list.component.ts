@@ -16,6 +16,10 @@ export class CategoryListComponent implements OnInit  {
   pageSize: number = 10;
   totalPages: number = 0;
   orderAsc: boolean = true;
+  columns = [
+    { field: 'name', header: 'Nombre' },
+    { field: 'description', header: 'Descripción' }
+  ];
 
   errorMessage: string = '';
 

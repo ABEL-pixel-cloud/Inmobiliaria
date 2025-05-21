@@ -1,0 +1,59 @@
+<form [formGroup]="ubicationList" class="ubicationForm"> 
+ <div class="ubicationForm__filters">
+  <div class="ubicationForm__search">
+    <app-form-field [label]="'Ingresa la ubicación'" [id]="'city'">
+      <app-input
+        [type]="'text'"
+        [placeholder]="'Ingresa la ubicación'"
+        [id]="'city'"
+        class="city-form__input"
+        [control]="name"
+      ></app-input>
+    </app-form-field>
+  </div>
+
+  <div class="ubicationForm__order">
+    <app-form-field [label]="'Ordenar por'" [id]="'order'">
+      <ng-select
+        [items]="options"
+        bindLabel="label"
+        bindValue="value"
+        [formControl]="order"
+        [id]="'order'"
+        placeholder="Selecciona el orden"
+        [searchable]="false"
+        class="app-select">
+      </ng-select>
+      <div class="error-message" *ngIf="order.invalid && (order.dirty || order.touched)">
+        Por favor selecciona un orden.
+      </div>
+    </app-form-field>
+  </div>
+
+  <div class="ubicationForm__actions">
+    <app-button
+      *ngIf="name.value?.trim() && order.value !== null"
+      [text]="'Filtrar'"
+      (buttonClick)="applyFilters()"
+      variant="primary">
+      Filtrar
+    </app-button>
+  </div>
+</div>
+
+
+    <app-table
+      [data]="locations"
+      [columns]="columns"
+      [currentPage]="currentPage"
+      [pageSize]="pageSize">
+    </app-table>
+
+    <div class="ubicationForm__pagination">
+      <app-pagination
+        [pagination]="paginationData"
+        (pageChanged)="goToPage($event)">
+      </app-pagination>
+    </div>
+
+</form>

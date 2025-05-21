@@ -96,7 +96,7 @@ describe('CreateLocationComponent', () => {
       city: 1
     });
 
-    expect(mockToastr.success).toHaveBeenCalledWith('Ubicacion  creada exitosamente');
+    expect(mockToastr.success).toHaveBeenCalledWith('Ubicacion creada exitosamente');
     expect(component.locationform.pristine).toBe(true);
   });
 

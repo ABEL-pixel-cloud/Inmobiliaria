@@ -1,22 +1,31 @@
-<div class="categories">
-  <h2 class="categories__title">Categorías existentes</h2>
-
-  <!-- Encabezado de la tabla con el elemento <caption> -->
-  <table class="categories__table">
-    <thead class="categories__table-head">
-      <tr class="categories__table-row">
-        <th class="categories__table-header">ID</th>
-        <th class="categories__table-header">Nombre</th>
-        <th class="categories__table-header">Descripción</th>
-        <th class="categories__table-header">Acciones</th>
+<div class="table-component">
+  <table class="table-component__table">
+    <thead class="table-component__table-head">
+      <tr class="table-component__table-row">
+        <th class="table-component__table-header">ID</th>
+        <th 
+          class="table-component__table-header" 
+          *ngFor="let column of columns">
+          {{ column.header }}
+        </th>
+        <th class="table-component__table-header">Acciones</th>
       </tr>
     </thead>
-    <tbody class="categories__table-body">
-      <tr class="categories__table-row" *ngFor="let category of categories; let i = index">
-        <td class="categories__table-cell">#CAT-{{ currentPage * pageSize + i + 1 }}</td>
-        <td class="categories__table-cell">{{ category.name }}</td>
-        <td class="categories__table-cell">{{ category.description }}</td>
-        <td class="categories__table-cell"><app-icon iconName="🗑️" ></app-icon></td>
+    <tbody class="table-component__table-body">
+      <tr 
+        class="table-component__table-row" 
+        *ngFor="let item of data; let i = index">
+        <td class="table-component__table-cell">
+          #CAT-22500{{ currentPage * pageSize + i + 1 }}
+        </td>
+        <td 
+          class="table-component__table-cell" 
+          *ngFor="let column of columns">
+          {{ item[column.field] }}
+        </td>
+        <td class="table-component__table-cell">
+          <app-icon iconName="🗑️"></app-icon>
+        </td>
       </tr>
     </tbody>
   </table>

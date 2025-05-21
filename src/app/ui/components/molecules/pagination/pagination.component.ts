@@ -1,5 +1,7 @@
+import { PaginationData } from './../../../../core/models/paginationModel';
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { CategoryResponse } from 'src/app/core/models/category';
+
+
 
 @Component({
   selector: 'app-pagination',
@@ -9,7 +11,14 @@ import { CategoryResponse } from 'src/app/core/models/category';
 
 export class PaginationComponent implements OnChanges {
   
-  @Input() pagination!: CategoryResponse;
+@Input() pagination: PaginationData = {
+  currentPage: 0,
+  totalPages: 0,
+  pageSize: 0,
+  totalElements: 0,
+  hasNext: false,
+  hasPrevious: false,
+};
   @Output() pageChanged = new EventEmitter<number>();
 
   visiblePages: number[] = [];

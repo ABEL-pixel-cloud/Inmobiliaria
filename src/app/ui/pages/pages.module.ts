@@ -9,6 +9,7 @@ import { OrganismsModule } from '../components/organisms/organisms.module';
 import { MoleculesModule } from '../components/molecules/molecules.module';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { CreateUbicationComponent } from './admin/create-ubication/create-ubication.component';
+import { UbicationListComponent } from '../components/organisms/ubication-list/ubication-list.component';
 
 
 
@@ -20,6 +21,7 @@ import { CreateUbicationComponent } from './admin/create-ubication/create-ubicat
     CreateCategoryComponent,
     DashboardComponent,
     CreateUbicationComponent,
+
  
   ],
   imports: [

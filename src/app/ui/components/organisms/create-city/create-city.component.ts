@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -14,7 +13,7 @@ import { LocationEventService } from 'src/app/core/services/ubicationService/loc
   templateUrl: './create-city.component.html',
   styleUrls: ['./create-city.component.scss']
 })
-export class CreateCityComponent implements OnInit{
+export class CreateCityComponent implements OnInit {
   departments: departmentModel[] = [];
   cityform: FormGroup;
 
@@ -22,9 +21,8 @@ export class CreateCityComponent implements OnInit{
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private CityService: CityService,
-    private DepartmentService:DepartmentService,
+    private DepartmentService: DepartmentService,
     private LocationEventService: LocationEventService
-
   ) {
     this.cityform = this.buildForm();
   }
@@ -33,29 +31,28 @@ export class CreateCityComponent implements OnInit{
     this.loadDepartments();
 
     this.LocationEventService.departmentCreated$.subscribe(() => {
-      this.loadDepartments(); 
+      this.loadDepartments();
     });
   }
-private loadDepartments(): void {
-  this.DepartmentService.getDepartments().subscribe({
-    next: (departments) => {
-      this.departments = departments;
-    },
-    error: () => {
-      this.toastr.error('Error al cargar departamentos');
-      // Eliminado console.error para no mostrar en consola
-    }
-  });
-}
+
+  private loadDepartments(): void {
+    this.DepartmentService.getDepartments().subscribe({
+      next: (departments) => {
+        this.departments = departments;
+      },
+      error: () => {
+        this.toastr.error('Error al cargar departamentos');
+      }
+    });
+  }
 
   private buildForm(): FormGroup {
     return this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(FORM_VALIDATORS.CATEGORY.MAX_NAME_LENGTH)]],
       description: ['', [Validators.required, Validators.maxLength(FORM_VALIDATORS.CATEGORY.MAX_DESCRIPTION_LENGTH)]],
-      department: [null, [Validators.required]] 
+      department: [null, [Validators.required]]
     });
   }
-
 
   get cityName(): FormControl {
     return this.cityform.get('name') as FormControl;
@@ -69,29 +66,28 @@ private loadDepartments(): void {
     return this.cityform.get('department') as FormControl;
   }
 
-
   createCity(): void {
-  if (this.cityform.invalid) {
-    this.cityform.markAllAsTouched();
-    return;
+    if (this.cityform.invalid) {
+      this.cityform.markAllAsTouched();
+      return;
+    }
+    const formValue = this.cityform.value;
+
+    const newCity: cityModel = {
+      name: formValue.name,
+      description: formValue.description,
+      department: formValue.department
+    };
+
+    this.CityService.postCity(newCity).subscribe({
+      next: () => {
+        this.toastr.success('Ciudad creada exitosamente');
+        this.cityform.reset();
+        this.LocationEventService.notifyCityCreated();
+      },
+      error: (e) => {
+        this.toastr.error(e.message);
+      },
+    });
   }
-  const formValue = this.cityform.value;
-
-  const newCity: cityModel = {
-    name: formValue.name,
-    description: formValue.description,
-    department: formValue.department
-  };
-
-  this.CityService.postCity(newCity).subscribe({
-    next: () => {
-      this.toastr.success('Ciudad creada exitosamente');
-      this.cityform.reset();
-      this.LocationEventService.notifyCityCreated();
-    },
-    error: (e) => {
-      this.toastr.error(e.message);
-    },
-  });
-}
 }

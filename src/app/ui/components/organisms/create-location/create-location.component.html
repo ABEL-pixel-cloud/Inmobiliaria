@@ -17,8 +17,8 @@
         >
         </app-select>
       </app-form-field>
-      <div class="location-form__error" *ngIf="city?.touched && city?.invalid">
-        <small *ngIf="city.errors?.['required']">Seleccionar un departamento es obligatorio.</small>
+      <div class="location-form__errors" *ngIf="city?.touched && city?.invalid">
+        <small *ngIf="city.errors?.['required']">Seleccionar una ciudad es obligatorio.</small>
       </div>
     </div>
 

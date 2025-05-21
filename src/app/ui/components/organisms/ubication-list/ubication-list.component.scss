@@ -1,0 +1,36 @@
+.ubicationForm {
+  font-family: 'Manrope', sans-serif;
+  margin-top: 50px;
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 14px;
+
+  &__filters {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+    flex-wrap: wrap; // Opcional para pantallas pequeñas
+    margin-bottom: 20px;
+  }
+
+
+  &__search,
+  &__order,
+  &__actions {
+    width: 20%; // Puedes ajustar según diseño
+  }
+
+  &__actions {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__pagination {
+    margin-top: 20px;
+  }
+}
+
+.ng-select{
+  margin-top: 10px;
+
+}

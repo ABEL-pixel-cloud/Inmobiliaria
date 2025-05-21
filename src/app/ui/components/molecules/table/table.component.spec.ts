@@ -7,7 +7,7 @@ describe('TableComponent (Jest)', () => {
   let componente: TableComponent;
   let fixture: ComponentFixture<TableComponent>;
 
-  const categoriasMock: Category[] = [
+  const dataMock: Category[] = [
     { id: 1, name: 'Categoría 1', description: 'Desc 1' },
     { id: 2, name: 'Categoría 2', description: 'Desc 2' },
   ];
@@ -20,7 +20,7 @@ describe('TableComponent (Jest)', () => {
 
     fixture = TestBed.createComponent(TableComponent);
     componente = fixture.componentInstance;
-    componente.categories = categoriasMock;
+    componente.data = dataMock;
     fixture.detectChanges();
   });
 

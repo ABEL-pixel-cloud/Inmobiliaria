@@ -5,6 +5,7 @@ button {
     border-radius: 0.3rem;
     cursor: pointer;
     transition: background-color 0.2s;
+    margin-top: 38px;
 
     &.primary {
         font-family: Manrope;
@@ -44,6 +45,7 @@ button {
       transition: background-color 0.2s;
       color: white;
       background-color: rgba(37, 99, 235, 1);
+      
 
       }
 
