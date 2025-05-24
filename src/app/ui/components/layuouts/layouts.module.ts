@@ -5,12 +5,14 @@ import { MoleculesModule } from '../molecules/molecules.module';
 import { AtomsModule } from '../atoms/atoms.module';
 import { OrganismsModule } from '../organisms/organisms.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { SellerLayoutComponent } from './seller-layout/seller-layout.component';
 
 
 
 @NgModule({
   declarations: [
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    SellerLayoutComponent
   ],
   imports: [
     CommonModule,

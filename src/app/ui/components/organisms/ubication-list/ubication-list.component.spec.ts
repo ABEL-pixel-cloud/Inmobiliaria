@@ -61,87 +61,89 @@ describe('UbicationListComponent', () => {
     expect(component.currentPage).toBe(0);
   });
 
-
   it('debería asignar searchTerm como cadena vacía si el valor es null o vacío', fakeAsync(() => {
-    const spy = jest.spyOn(component, 'loadLocations');
+    const spyLoad = jest.spyOn(component, 'loadLocations');
 
     component.name.setValue(null);
     tick();
     expect(component.searchTerm).toBe('');
-    expect(spy).toHaveBeenCalledWith(0);
+    expect(spyLoad).toHaveBeenCalledWith(0);
 
     component.name.setValue('');
     tick();
     expect(component.searchTerm).toBe('');
-    expect(spy).toHaveBeenCalledTimes(2); // Se llama dos veces (una por cada cambio)
+    expect(spyLoad).toHaveBeenCalledTimes(2);
   }));
-it('debería aplicar el filtro cuando se llama applyFilters()', () => {
-  component.name.setValue('Barrio 1');
-  component.order.setValue(true); // Asegurarse de que el formulario es válido
 
-  const spy = jest.spyOn(component, 'loadLocations');
+  it('debería aplicar el filtro cuando se llama applyFilters()', () => {
+    component.name.setValue('Barrio 1');
+    component.order.setValue(true); // formulario válido
 
-  component.applyFilters();
-
-  expect(component.searchTerm).toBe('Barrio 1');
-  expect(spy).toHaveBeenCalledWith(0);
-});
-  it('no debería aplicar filtro si el formulario es inválido', () => {
-    component.ubicationList.get('order')?.setValue(null);
-    const spy = jest.spyOn(component, 'loadLocations');
+    const spyLoad = jest.spyOn(component, 'loadLocations');
 
     component.applyFilters();
 
-    expect(spy).not.toHaveBeenCalled();
+    expect(component.searchTerm).toBe('Barrio 1');
+    expect(spyLoad).toHaveBeenCalledWith(0);
   });
+
+  it('no debería aplicar filtro si el formulario es inválido', () => {
+    component.ubicationList.get('order')?.setValue(null);
+    const spyLoad = jest.spyOn(component, 'loadLocations');
+
+    component.applyFilters();
+
+    expect(spyLoad).not.toHaveBeenCalled();
+  });
+
   it('debería asignar cadena vacía a searchTerm si name es null al aplicar filtros', () => {
-  component.name.setValue(null);
-  component.order.setValue(true); // Para que el formulario sea válido
+    component.name.setValue(null);
+    component.order.setValue(true); // para que sea válido
 
-  const spy = jest.spyOn(component, 'loadLocations');
+    const spyLoad = jest.spyOn(component, 'loadLocations');
 
-  component.applyFilters();
+    component.applyFilters();
 
-  expect(component.searchTerm).toBe('');
-  expect(spy).toHaveBeenCalledWith(0);
-});
+    expect(component.searchTerm).toBe('');
+    expect(spyLoad).toHaveBeenCalledWith(0);
+  });
 
   it('debería cambiar de página con nextPage()', () => {
     component.currentPage = 0;
     component.totalPages = 3;
-    const spy = jest.spyOn(component, 'loadLocations');
+    const spyLoad = jest.spyOn(component, 'loadLocations');
 
     component.nextPage();
 
-    expect(spy).toHaveBeenCalledWith(1);
+    expect(spyLoad).toHaveBeenCalledWith(1);
   });
 
   it('no debería avanzar si nextPage() es llamado en la última página', () => {
     component.currentPage = 2;
     component.totalPages = 3;
-    const spy = jest.spyOn(component, 'goToPage');
+    const spyGo = jest.spyOn(component, 'goToPage');
 
     component.nextPage();
 
-    expect(spy).not.toHaveBeenCalled();
+    expect(spyGo).not.toHaveBeenCalled();
   });
 
   it('debería cambiar de página con previousPage()', () => {
     component.currentPage = 2;
-    const spy = jest.spyOn(component, 'loadLocations');
+    const spyLoad = jest.spyOn(component, 'loadLocations');
 
     component.previousPage();
 
-    expect(spy).toHaveBeenCalledWith(1);
+    expect(spyLoad).toHaveBeenCalledWith(1);
   });
 
   it('no debería retroceder si previousPage() es llamado en la primera página', () => {
     component.currentPage = 0;
-    const spy = jest.spyOn(component, 'goToPage');
+    const spyGo = jest.spyOn(component, 'goToPage');
 
     component.previousPage();
 
-    expect(spy).not.toHaveBeenCalled();
+    expect(spyGo).not.toHaveBeenCalled();
   });
 
   it('debería manejar errores al cargar ubicaciones', fakeAsync(() => {
@@ -156,10 +158,10 @@ it('debería aplicar el filtro cuando se llama applyFilters()', () => {
   }));
 
   it('debería recargar ubicaciones al recibir evento locationCreated$', () => {
-    const spy = jest.spyOn(component, 'loadLocations');
+    const spyLoad = jest.spyOn(component, 'loadLocations');
 
     locationCreatedSubject.next();
 
-    expect(spy).toHaveBeenCalledWith(component.currentPage);
+    expect(spyLoad).toHaveBeenCalledWith(component.currentPage);
   });
 });

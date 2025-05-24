@@ -9,7 +9,8 @@ import { OrganismsModule } from '../components/organisms/organisms.module';
 import { MoleculesModule } from '../components/molecules/molecules.module';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { CreateUbicationComponent } from './admin/create-ubication/create-ubication.component';
-import { UbicationListComponent } from '../components/organisms/ubication-list/ubication-list.component';
+import { CreateUsersComponent } from './admin/create-users/create-users.component';
+
 
 
 
@@ -21,6 +22,8 @@ import { UbicationListComponent } from '../components/organisms/ubication-list/u
     CreateCategoryComponent,
     DashboardComponent,
     CreateUbicationComponent,
+    CreateUsersComponent,
+
 
  
   ],
@@ -34,7 +37,6 @@ import { UbicationListComponent } from '../components/organisms/ubication-list/u
   ],
    exports: [
     CreateCategoryComponent,
-
 
    ]
 })

@@ -11,6 +11,7 @@ import { CreateDepartmentComponent } from './create-department/create-department
 import { CreateCityComponent } from './create-city/create-city.component';
 import { CreateLocationComponent } from './create-location/create-location.component';
 import { UbicationListComponent } from './ubication-list/ubication-list.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 
 
@@ -25,6 +26,7 @@ import { UbicationListComponent } from './ubication-list/ubication-list.componen
     CreateCityComponent,
     CreateLocationComponent,
     UbicationListComponent,
+    CreateUserComponent,
   
   ],
   imports: [
@@ -42,7 +44,8 @@ import { UbicationListComponent } from './ubication-list/ubication-list.componen
     CreateDepartmentComponent,
     CreateCityComponent,
     CreateLocationComponent,
-    UbicationListComponent
+    UbicationListComponent,
+    CreateUserComponent,
   ]
  
 })

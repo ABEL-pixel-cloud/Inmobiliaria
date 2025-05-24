@@ -91,12 +91,10 @@ export class UbicationListComponent implements OnInit {
   }
 
   applyFilters(): void {
-    if (this.ubicationList.invalid) {
-      this.ubicationList.markAllAsTouched();
-      return;
-    }
-
-    this.searchTerm = this.name.value || '';
+     if (this.ubicationList.invalid) {
+    return;
+  }
+    this.searchTerm = this.name.value || "";
     this.currentPage = 0;
     this.loadLocations(this.currentPage);
   }

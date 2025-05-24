@@ -1,0 +1,147 @@
+<form [formGroup]="userForm" class="user-form">
+  <section class="user-form__title">
+    <h1 class="user-form__title-text">Crear Usuario</h1>
+  </section>
+
+  <section class="user-form__fields">
+
+    <!-- Nombre -->
+    <div class="user-form__group">
+      <app-form-field [label]="'Nombre'" [id]="'name'">
+        <app-input
+          variant="primary"
+          [type]="'text'"
+          [placeholder]="'Nombre del usuario'"
+          [control]="name"
+          [id]="'name'"
+          aria-labelledby="name-label"       
+          [maxlength]=30>
+        </app-input>
+      </app-form-field>
+      <div class="user-form__error-message" *ngIf="name.touched && name.invalid">
+        <small *ngIf="name.errors?.['required']">El nombre es obligatorio.</small>
+        <small *ngIf="name.errors?.['pattern']">Solo se permiten letras.</small>
+      </div>
+    </div>
+
+    <!-- Apellido -->
+    <div class="user-form__group">
+      <app-form-field [label]="'Apellido'" [id]="'lastname'">
+        <app-input
+          variant="primary"
+          [type]="'text'"
+          [placeholder]="'Apellido del usuario'"
+          [control]="lastname"
+          [id]="'lastname'" 
+          [maxlength]=30>
+        </app-input>
+      </app-form-field>
+      <div class="user-form__error-message"  *ngIf="lastname.touched && lastname.invalid">
+        <small *ngIf="lastname.errors?.['required']">El apellido es obligatorio.</small>
+        <small *ngIf="lastname.errors?.['pattern']">Solo se permiten letras.</small>
+      </div>
+    </div>
+
+    <!-- Documento -->
+    <div class="user-form__group">
+      <app-form-field [label]="'Documento'" [id]="'document'">
+        <app-input
+          variant="primary"
+          [type]="'number'"
+          [placeholder]="'Número de documento'"
+          [control]="document"
+          [id]="'document'"
+          (keydown)="blockNonNumeric($event)">
+        </app-input>
+      </app-form-field>
+      <div class="user-form__error-message"  *ngIf="document.touched && document.invalid">
+        <small *ngIf="document.errors?.['required']">El documento es obligatorio.</small>
+        <small *ngIf="document.errors?.['pattern']">Debe contener exactamente 10 dígitos numéricos.</small>
+      </div>
+    </div>
+
+    <!-- Teléfono -->
+    <div class="user-form__group">
+      <app-form-field [label]="'Teléfono'" [id]="'phone'">
+        <app-input
+          variant="primary"
+          [type]="'tel'"
+          [placeholder]="'Ej: (+573001112233)  o  (3105125467)'"
+          [control]="phone"
+          [id]="'phone'"   
+          (keydown)="blockPhoneInput($event)"
+          >
+        </app-input>
+      </app-form-field>
+      <div class="user-form__error-message"  *ngIf="phone.touched && phone.invalid">
+        <small *ngIf="phone.errors?.['required']">El teléfono es obligatorio.</small>
+        <small *ngIf="phone.errors?.['pattern']"> 
+          Formatos válidos:
+          <strong>(10 digitos)</strong> 3001234567 o <strong>(13 digitos)</strong>. +573001234567</small>
+      </div>
+    </div>
+
+    <!-- Fecha de nacimiento -->
+    <div class="user-form__group">
+      <app-form-field [label]="'Fecha de nacimiento'" [id]="'birthdate'">
+        <app-input
+          variant="primary"
+          [type]="'date'"
+          [control]="birthdate"
+          [id]="'birthdate'">
+        </app-input>
+      </app-form-field>
+        <div  class="user-form__error-message"  *ngIf="birthdate.touched && birthdate.invalid">
+    <small *ngIf="birthdate.errors?.['required']">La fecha es obligatoria.</small>
+    <small *ngIf="birthdate.errors?.['underage']">Debes ser mayor de edad.</small>
+  </div>
+    </div>
+
+    <!-- Correo electrónico -->
+    <div class="user-form__group">
+      <app-form-field [label]="'Correo electrónico'" [id]="'email'">
+        <app-input
+          variant="primary"
+          [type]="'email'"
+          [placeholder]="'Ej: ejemplo@correo.com'"
+          [control]="email"
+          [id]="'email'"
+          (keydown)="blockSpaces($event)">
+        </app-input>
+      </app-form-field>
+      <div class="user-form__error-message"  *ngIf="email.touched && email.invalid">
+        <small *ngIf="email.errors?.['required']">El correo es obligatorio.</small>
+        <small *ngIf="email.errors?.['pattern']">Debe ser un correo válido: pepito&#64;gmail.com</small>
+      </div>
+    </div>
+
+    <!-- Contraseña -->
+    <div class="user-form__group">
+      <app-form-field [label]="'Contraseña'" [id]="'password'">
+        <app-input
+          variant="primary"
+          [type]="'password'"
+          [placeholder]="'Contraseña'"
+          [control]="password"
+          [id]="'password'"
+          (keydown)="blockSpaces($event)">
+
+        </app-input>
+      </app-form-field>
+      <div class="user-form__error-message"  *ngIf="password.touched && password.invalid">
+        <small *ngIf="password.errors?.['required']">La contraseña es obligatoria.</small>
+      </div>
+    </div>
+
+    <!-- Botón enviar -->
+    <section class="user-form__actions">
+      <app-button
+        [text]="'Crear Usuario'"
+        (buttonClick)="createUser()"
+        variant="primary"
+        [disabled]="!userForm.valid">
+        Crear
+      </app-button>
+    </section>
+  </section>
+</form>
