@@ -109,4 +109,5 @@ describe('CreateLocationComponent', () => {
 
     expect(mockToastr.error).toHaveBeenCalledWith('Error al crear');
   });
+
 });

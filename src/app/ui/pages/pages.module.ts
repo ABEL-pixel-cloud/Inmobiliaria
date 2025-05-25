@@ -10,6 +10,8 @@ import { MoleculesModule } from '../components/molecules/molecules.module';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { CreateUbicationComponent } from './admin/create-ubication/create-ubication.component';
 import { CreateUsersComponent } from './admin/create-users/create-users.component';
+import { CreatePublishHomesComponent } from './seller/create-publish-homes/create-publish-homes.component';
+
 
 
 
@@ -23,9 +25,7 @@ import { CreateUsersComponent } from './admin/create-users/create-users.componen
     DashboardComponent,
     CreateUbicationComponent,
     CreateUsersComponent,
-
-
- 
+    CreatePublishHomesComponent,
   ],
   imports: [
     CommonModule,

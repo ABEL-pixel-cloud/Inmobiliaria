@@ -22,7 +22,8 @@ import { SellerLayoutComponent } from './seller-layout/seller-layout.component';
     OrganismsModule
   ],
   exports: [
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    SellerLayoutComponent
   ]
 })
 export class LayoutsModule { }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input,Output,EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -13,4 +13,10 @@ export class InputComponent {
   @Input() control!: FormControl;
   @Input() variant: 'primary' = 'primary'; 
   @Input() maxlength?: number; 
+  @Input() min?: number;
+  @Input() max?: number;
+
+@Output() keydown = new EventEmitter<KeyboardEvent>();
+
+
 }

@@ -9,7 +9,7 @@ import { sidebarItem } from 'src/app/core/models/siderbarItem';
 export class SellerLayoutComponent {
   sidebarItems: sidebarItem[] = [
     { label: 'Dashboard', iconPath: '/assets/images/dashboard.png', route: '/seller/dashboard' },
-    { label: 'Propiedades', iconPath: '/assets/images/home.png', route: '/seller/create-publish-home' }, // sin ruta
+    { label: 'Propiedades', iconPath: '/assets/images/home.png', route: '/seller/create-publish-home' },
   ];
 
 }

@@ -55,6 +55,7 @@ export class CategoryFormComponent {
         this.toastr.success('Categoría creada exitosamente');
         this.categoryForm.reset();
         this.categoryEventService.notifyCategoryCreated();
+        localStorage.setItem('categoryUpdated', Date.now().toString());
       },
       error: (e) => {
         this.toastr.error(e.message);

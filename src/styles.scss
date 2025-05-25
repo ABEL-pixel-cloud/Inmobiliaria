@@ -100,4 +100,9 @@
       margin: 0; /* Anula el margen predeterminado del navegador */
       padding: 0; /* También es buena práctica resetear el padding */
     }
+
+    .app-select {
+  // Este estilo se aplica al host de ng-select
+  width: 100%;
+}
    

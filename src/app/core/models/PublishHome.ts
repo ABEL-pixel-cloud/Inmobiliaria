@@ -7,6 +7,6 @@ export interface PublishHome {
   price: number;
   category: number;
   location: number;
-  activationDate: string; // Formato: YYYY-MM-DD
+  activationDate: string; 
   sellerId: number;
 }

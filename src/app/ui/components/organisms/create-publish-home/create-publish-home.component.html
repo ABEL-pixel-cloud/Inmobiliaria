@@ -1,0 +1,172 @@
+<form [formGroup]="publishForm" class="user-form">
+  <section class="user-form__title">
+    <h1 class="user-form__title-text">Publicar Casa</h1>
+  </section>
+
+  <section class="user-form__fields">
+    <!-- Nombre -->
+    <div class="user-form__group">
+      <app-form-field [label]="'Nombre de la casa'" [id]="'name'">
+        <app-input
+          variant="primary"
+          [type]="'text'"
+          [placeholder]="'Ej: Casa campestre...'"
+          [control]="name"
+          [id]="'name'"
+          [maxlength]="50">
+        </app-input>
+      </app-form-field>
+      <div class="user-form__error-message" *ngIf="name.touched && name.invalid">
+        <small *ngIf="name.errors?.['required']">Este campo es obligatorio.</small>
+        <small *ngIf="name.errors?.['pattern']">Solo se permiten letras y espacios.</small>
+        <small *ngIf="name.errors?.['maxlength']">Máximo 50 caracteres.</small>
+      </div>
+    </div>
+
+    <!-- Dirección -->
+    <div class="user-form__group">
+      <app-form-field [label]="'Dirección'" [id]="'address'">
+        <app-input
+          variant="primary"
+          [type]="'text'"
+          [placeholder]="'Dirección exacta...'"
+          [control]="address"
+          [id]="'address'">
+        </app-input>
+      </app-form-field>
+      <div class="user-form__error-message" *ngIf="address.touched && address.invalid">
+        <small *ngIf="address.errors?.['required']">La dirección es obligatoria.</small>
+      </div>
+    </div>
+
+    <!-- Descripción -->
+    <div class="user-form__group">
+      <app-form-field [label]="'Descripción'" [id]="'description'">
+        <app-textarea
+          variant="primary"
+          [placeholder]="'Describe la casa...'"
+          [control]="description"
+          [id]="'description'">
+        </app-textarea>
+      </app-form-field>
+          <div class="user-form__error-message" *ngIf="description.touched && description.invalid">
+        <small *ngIf="description.errors?.['required']">Agregar una description es obligatorio.</small>
+      </div>
+    </div>
+
+    <!-- Número de habitaciones -->
+    <div class="user-form__group">
+      <app-form-field [label]="'Número de habitaciones'" [id]="'rooms'">
+        <app-input
+          variant="primary"
+          [type]="'number'"
+          [control]="numberOfRooms"
+          [id]="'rooms'"
+          [min]="1"
+          [max]="100"
+          (keydown)="preventInvalidInput($event)">    
+        </app-input>
+      </app-form-field>
+        <div class="user-form__error-message" *ngIf="numberOfRooms?.touched && numberOfRooms?.invalid">
+        <small *ngIf="numberOfRooms.errors?.['required']">Seleccionar un cuarto es obligatorio.</small>
+    </div>
+    </div>
+
+    <!-- Número de baños -->
+    <div class="user-form__group">
+      <app-form-field [label]="'Número de baños'" [id]="'bathrooms'">
+        <app-input
+          variant="primary"
+          [type]="'number'"
+          [control]="numberOfBathrooms"
+          [id]="'bathrooms'"
+          [min]="1"
+          [max]="100"
+          (keydown)="preventInvalidInput($event)">
+        </app-input>
+      </app-form-field>
+        <div class="user-form__error-message" *ngIf="numberOfBathrooms?.touched && numberOfBathrooms?.invalid">
+    <small *ngIf="numberOfBathrooms.errors?.['required']">Seleccionar un baño es obligatorio.</small>
+  </div>
+    </div>
+
+    <!-- Precio -->
+    <div class="user-form__group">
+      <app-form-field [label]="'Precio (COP)'" [id]="'price'">
+        <app-input
+          variant="primary"
+          [type]="'number'"
+          [control]="price"
+          [id]="'price'"
+          [min]="1"
+          (keydown)="preventInvalidInput($event)">
+        </app-input>
+      </app-form-field>
+          <div class="user-form__error-message" *ngIf="price?.touched && price?.invalid">
+         <small *ngIf="price.errors?.['required']">Agregar un precio es obligatorio.</small>
+    </div>
+    </div>
+
+    <!-- Categoría -->
+<div class="user-form__group">
+  <app-form-field [label]="'Categoría'" [id]="'categorySelect'">
+    <app-select
+      [id]="'categorySelect'"
+      [options]="categories"
+      [displayProperty]="'name'"
+      [valueProperty]="'id'"
+      [control]="category"
+      [placeholder]="'Selecciona una categoría'">
+    </app-select>
+  </app-form-field>
+
+  <div class="user-form__error-message" *ngIf="category?.touched && category?.invalid">
+    <small *ngIf="category.errors?.['required']">Seleccionar una categoría es obligatorio.</small>
+  </div>
+</div>
+   <!-- Ubicación -->
+<div class="user-form__group">
+  <app-form-field [label]="'Ubicación'" [id]="'locationSelect'">
+    <app-select
+      [id]="'locationSelect'"
+      [options]="locations"
+      [displayProperty]="'label'"        
+      [valueProperty]="'id'"             
+      [control]="location"
+      [placeholder]="'Selecciona una ubicación'">
+    </app-select>
+  </app-form-field>
+
+  <div class="user-form__error-message" *ngIf="location?.touched && location?.invalid">
+    <small *ngIf="location.errors?.['required']">Seleccionar una ubicación es obligatorio.</small>
+  </div>
+</div>
+    <!-- Fecha de activación -->
+    <div class="user-form__group">
+      <app-form-field [label]="'Fecha de publicación'" [id]="'activationDate'">
+        <app-input
+          variant="primary"
+          [type]="'date'"
+          [control]="activationDate"
+          [id]="'activationDate'">
+        </app-input>
+      </app-form-field>
+      <div class="user-form__error-message" *ngIf="activationDate?.touched && activationDate?.invalid">
+         <small *ngIf="activationDate.errors?.['required']">Agregar una fecha es obligatoria.</small> 
+        <small *ngIf="activationDate.errors?.['pastDate']">La fecha no puede ser en el pasado.</small>
+        <small *ngIf="activationDate.errors?.['futureDate']">La fecha no puede ser superior a un mes desde hoy.</small>
+    </div>
+    </div>
+
+    <!-- Botón de publicar -->
+    <section class="user-form__actions">
+      <app-button
+        [text]="'Publicar Casa'"
+        (buttonClick)="createPublishHome()"
+        variant="primary"
+        [disabled]="!publishForm.valid">
+        Publicar
+      </app-button>
+    </section>
+  </section>
+</form>  

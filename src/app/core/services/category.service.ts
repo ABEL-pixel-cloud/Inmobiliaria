@@ -33,6 +33,12 @@ export class CategoryService {
       catchError(this.handleError)
     );
   }
+  getAllCategories(): Observable<Category[]> {
+  const url = 'http://localhost:8081/api/v1/category/list-categories'; 
+  return this.http.get<Category[]>(url).pipe(
+    catchError(this.handleError)
+  );
+}
 
 
    private handleError(error: HttpErrorResponse) {
