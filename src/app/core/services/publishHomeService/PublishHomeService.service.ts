@@ -11,6 +11,7 @@ import { PublishHome } from '../../models/PublishHome';
   providedIn: 'root'
 })
 export class PublishHomeService {
+
  private apiUrl = 'http://localhost:8081/api/v1/publish/create-home';
   private sellerId = 1; 
 
@@ -27,6 +28,8 @@ export class PublishHomeService {
         catchError(this.handleError)
       );
   }
+
+
 
   private handleError(error: HttpErrorResponse) {
     let errorMsg = 'Ocurrió un error inesperado.';
