@@ -60,6 +60,7 @@
         <app-input
           variant="primary"
           [type]="'number'"
+          [placeholder]="'numero de habitaciones'"
           [control]="numberOfRooms"
           [id]="'rooms'"
           [min]="1"
@@ -69,6 +70,9 @@
       </app-form-field>
         <div class="user-form__error-message" *ngIf="numberOfRooms?.touched && numberOfRooms?.invalid">
         <small *ngIf="numberOfRooms.errors?.['required']">Seleccionar un cuarto es obligatorio.</small>
+            <small *ngIf="numberOfRooms.errors?.['min']">
+    El numero debe ser igual o mayor a  1.
+  </small>
     </div>
     </div>
 
@@ -78,6 +82,7 @@
         <app-input
           variant="primary"
           [type]="'number'"
+          [placeholder]="'numero de baños'"
           [control]="numberOfBathrooms"
           [id]="'bathrooms'"
           [min]="1"
@@ -87,6 +92,9 @@
       </app-form-field>
         <div class="user-form__error-message" *ngIf="numberOfBathrooms?.touched && numberOfBathrooms?.invalid">
     <small *ngIf="numberOfBathrooms.errors?.['required']">Seleccionar un baño es obligatorio.</small>
+      <small *ngIf="numberOfBathrooms.errors?.['min']">
+    El numero debe ser igual o mayor a  1.
+  </small>
   </div>
     </div>
 
@@ -96,6 +104,7 @@
         <app-input
           variant="primary"
           [type]="'number'"
+          [placeholder]="'precio cop'"
           [control]="price"
           [id]="'price'"
           [min]="1"
@@ -104,6 +113,7 @@
       </app-form-field>
           <div class="user-form__error-message" *ngIf="price?.touched && price?.invalid">
          <small *ngIf="price.errors?.['required']">Agregar un precio es obligatorio.</small>
+          <small *ngIf="price.errors?.['min']">El numero debe ser igual o mayor a  1.</small>
     </div>
     </div>
 

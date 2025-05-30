@@ -14,6 +14,7 @@ export class SelectComponent {
 @Input() placeholder: string = '';
 @Input() id!: string;
 @Input() control!: FormControl;
+compareBooleans = (a: any, b: any): boolean => a === b;
 
 
 }

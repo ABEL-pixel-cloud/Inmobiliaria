@@ -1,0 +1,22 @@
+.homeFilterForm__filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-top: 50px;
+
+  .filter {
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+
+  }
+}
+
+  .modal-actions {
+  display: flex;
+  flex-direction: row; // Horizontal
+  justify-content: flex-end; // O 'center' si los quieres centrados
+  gap: 10px; // Espacio entre botones
+  margin-top: 1rem; // Opcional para separación del contenido superior
+}

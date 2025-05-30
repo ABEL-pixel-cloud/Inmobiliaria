@@ -13,6 +13,8 @@ import { CreateLocationComponent } from './create-location/create-location.compo
 import { UbicationListComponent } from './ubication-list/ubication-list.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { CreatePublishHomeComponent } from './create-publish-home/create-publish-home.component';
+import { CreateFilterHomeComponent } from './create-filter-home/create-filter-home.component';
+
 
 
 
@@ -29,6 +31,8 @@ import { CreatePublishHomeComponent } from './create-publish-home/create-publish
     UbicationListComponent,
     CreateUserComponent,
     CreatePublishHomeComponent,
+    CreateFilterHomeComponent,
+
   
   ],
   imports: [
@@ -49,6 +53,8 @@ import { CreatePublishHomeComponent } from './create-publish-home/create-publish
     UbicationListComponent,
     CreateUserComponent,
     CreatePublishHomeComponent,
+    CreateFilterHomeComponent,
+
   ]
  
 })

@@ -13,8 +13,7 @@
           [displayProperty]="'name'"
           [valueProperty]="'id'"
           [control]="city"
-          [placeholder]="'Selecciona una ciudad'"
-        >
+          [placeholder]="'Selecciona una ciudad'">
         </app-select>
       </app-form-field>
       <div class="location-form__errors" *ngIf="city?.touched && city?.invalid">

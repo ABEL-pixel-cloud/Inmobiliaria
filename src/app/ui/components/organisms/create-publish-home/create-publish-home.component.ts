@@ -1,3 +1,4 @@
+import { PublishHomeEvent } from './../../../../core/services/publishHomeService/PublishHomeEvent.service';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +11,6 @@ import { CategoryService } from 'src/app/core/services/category.service';
 import { LocationService } from 'src/app/core/services/ubicationService/location.service';
 import { PublishHomeService } from 'src/app/core/services/publishHomeService/PublishHomeService.service';
 
-import { FORM_VALIDATORS } from 'src/app/shared/constants/form-validator.constants';
 
 @Component({
   selector: 'app-create-publish-home',
@@ -21,16 +21,44 @@ export class CreatePublishHomeComponent implements OnInit {
   publishForm: FormGroup;
   categories: Category[] = [];
   locations: locationModel[] = [];
+  errorMessage: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private publishService: PublishHomeService,
     private toastr: ToastrService,
     private categoryService: CategoryService,
-    private locationService: LocationService
+    private locationService: LocationService,
+    private publishHomeEvent:PublishHomeEvent
   ) {
     this.publishForm = this.buildForm();
   }
+
+
+  private buildForm(): FormGroup {
+    return this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(/^[A-Za-zÁÉÍÓÚÑáéíóúñ\s]+$/)]],
+      address: ['', [Validators.required, Validators.maxLength(100)]],
+      description: ['', [Validators.required, Validators.maxLength(100)]],
+      numberOfRooms: [null, [Validators.required, Validators.min(1), Validators.max(100)]],
+      numberOfBathrooms: [null, [Validators.required, Validators.min(1), Validators.max(50)]],
+      price: [null, [Validators.required, Validators.min(1)]],
+      category: [null, Validators.required],
+      location: [null, Validators.required],
+      activationDate: [null, [Validators.required, validActivationDate()]]
+    });
+  }
+  
+  get name() { return this.publishForm.get('name') as FormControl; }
+  get address() { return this.publishForm.get('address') as FormControl; }
+  get description() { return this.publishForm.get('description') as FormControl; }
+  get numberOfRooms() { return this.publishForm.get('numberOfRooms') as FormControl; }
+  get numberOfBathrooms() { return this.publishForm.get('numberOfBathrooms') as FormControl; }
+  get price() { return this.publishForm.get('price') as FormControl; }
+  get category() { return this.publishForm.get('category') as FormControl; }
+  get location() { return this.publishForm.get('location') as FormControl; }
+  get activationDate() { return this.publishForm.get('activationDate') as FormControl; }
+
 
   ngOnInit(): void {
     this.loadCategories();
@@ -56,10 +84,11 @@ export class CreatePublishHomeComponent implements OnInit {
       next: () => {
         this.toastr.success('Publicación creada con éxito');
         this.publishForm.reset();
+        this.publishHomeEvent.notifyPublishHomeCreated();
       },
-      error: (error) => {
-        this.toastr.error(error.message);
-      }
+        error: () => {
+          this.errorMessage = 'error al crear publicacion';
+        }
     });
   }
 
@@ -68,30 +97,6 @@ export class CreatePublishHomeComponent implements OnInit {
     if (invalidKeys.includes(event.key)) {
       event.preventDefault();
     }
-  }
-
-  get name() { return this.publishForm.get('name') as FormControl; }
-  get address() { return this.publishForm.get('address') as FormControl; }
-  get description() { return this.publishForm.get('description') as FormControl; }
-  get numberOfRooms() { return this.publishForm.get('numberOfRooms') as FormControl; }
-  get numberOfBathrooms() { return this.publishForm.get('numberOfBathrooms') as FormControl; }
-  get price() { return this.publishForm.get('price') as FormControl; }
-  get category() { return this.publishForm.get('category') as FormControl; }
-  get location() { return this.publishForm.get('location') as FormControl; }
-  get activationDate() { return this.publishForm.get('activationDate') as FormControl; }
-
-  private buildForm(): FormGroup {
-    return this.formBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(/^[A-Za-zÁÉÍÓÚÑáéíóúñ\s]+$/)]],
-      address: ['', [Validators.required, Validators.maxLength(100)]],
-      description: ['', [Validators.required, Validators.maxLength(100)]],
-      numberOfRooms: [null, [Validators.required, Validators.min(1), Validators.max(100)]],
-      numberOfBathrooms: [null, [Validators.required, Validators.min(1), Validators.max(50)]],
-      price: [null, [Validators.required, Validators.min(1)]],
-      category: [null, Validators.required],
-      location: [null, Validators.required],
-      activationDate: [null, [Validators.required, validActivationDate()]]
-    });
   }
 
   private loadCategories(): void {

@@ -13,7 +13,18 @@ input {
       font-family: Manrope;
       font-weight: 400;
       font-size: 14px;
+      margin-top: 1px;
+      width: 99%;
   
+    }
+
+    &.secundary {
+      font-family: Manrope;
+      font-weight: 400;
+      font-size: 14px;
+      width: 82%;
+      margin-top: 1px;
+
     }
   }
 

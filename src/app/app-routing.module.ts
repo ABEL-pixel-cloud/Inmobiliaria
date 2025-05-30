@@ -1,12 +1,14 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateCategoryComponent } from './ui/pages/admin/create-category/create-category.component';
 import { AdminLayoutComponent } from './ui/components/layuouts/admin-layout/admin-loyout.component';
 import { DashboardComponent } from './ui/pages/admin/dashboard/dashboard.component';
 import { CreateUbicationComponent } from './ui/pages/admin/create-ubication/create-ubication.component';
-import { CreateUserComponent } from './ui/components/organisms/create-user/create-user.component';
+import { CreateUsersComponent } from './ui/pages/admin/create-users/create-users.component';
 import { SellerLayoutComponent } from './ui/components/layuouts/seller-layout/seller-layout.component';
-import { CreatePublishHomeComponent } from './ui/components/organisms/create-publish-home/create-publish-home.component';
+import { CreatePublishHomesComponent } from './ui/pages/seller/create-publish-homes/create-publish-homes.component';
+
 
 const routes: Routes = [
   {
@@ -21,7 +23,7 @@ const routes: Routes = [
       { path: 'create-category', component: CreateCategoryComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'create-ubication', component: CreateUbicationComponent },
-      { path: 'create-user', component: CreateUserComponent },
+      { path: 'create-users', component: CreateUsersComponent },
     ]
   },
   {
@@ -29,15 +31,11 @@ const routes: Routes = [
     component: SellerLayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'create-publish-home', component: CreatePublishHomeComponent },
+      { path: 'create-publish-homes', component: CreatePublishHomesComponent },
       // Aquí puedes agregar más rutas específicas para vendedores
     ]
   },
-  // 404 opcional
-  {
-    path: '**',
-    redirectTo: 'admin/dashboard'
-  }
+   
  
 ];
 

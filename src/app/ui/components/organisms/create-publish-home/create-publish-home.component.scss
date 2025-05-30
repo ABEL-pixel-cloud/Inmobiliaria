@@ -23,7 +23,7 @@
   &__fields {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 10px;
     width: 97%;
   }
 
@@ -46,7 +46,7 @@
   }
 
   &__actions {
-    margin-top: 32px;
+
     text-align: center;
 
     app-button {

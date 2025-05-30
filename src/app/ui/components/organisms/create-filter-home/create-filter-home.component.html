@@ -1,0 +1,87 @@
+<form [formGroup]="filterForm" class="homeFilterForm">
+  <!-- Todos los filtros en una sola fila -->
+  <div class="homeFilterForm__filters-row">
+    <div class="filter">
+      <app-form-field label="Ubicación" id="location">
+        <app-input 
+         variant="secundary" id="location" placeholder="Ej: machado" [type]="'text'" [control]="location"></app-input>
+      </app-form-field>
+    </div>
+
+   <div class="filter">
+  <app-form-field label="Categoría" id="category">
+    <ng-select
+      (click)="applyFilters()"
+      [items]="categories"
+      bindLabel="name"
+      bindValue="name"
+      [formControl]="category"
+      placeholder="Seleccione una categoría"
+      [searchable]="false">
+    </ng-select>
+  </app-form-field>
+</div>
+
+    <div class="filter">
+      <app-form-field [label]="'Orden'" [id]="'orderAsc'">
+        <ng-select   (click)="applyFilters()" [id]="'orderAsc'" [items]="orderOptions" bindLabel="label" bindValue="value" [formControl]="orderAsc" placeholder="Orden" [searchable]="false"></ng-select>
+      </app-form-field>
+    </div>
+
+    <div class="filter">
+      <app-button  variant="primary"  [text]="'Filtros'" (click)="openExtrasModal()" type="button"></app-button>
+    </div>
+  </div>
+
+  <!-- Modal de filtros adicionales -->
+  <app-modal [visible]="showExtrasModal" (closed)="closeExtrasModal()">
+    <!-- Precio mínimo -->
+    <app-form-field variant="primary"label="Precio mínimo" id="minPrice">
+      <app-input variant="primary" id="minPrice" [type]="'number'" [control]="minPrice" placeholder="Precio mínimo"></app-input>
+    </app-form-field>
+
+    <!-- Precio máximo -->
+    <app-form-field label="Precio máximo" id="maxPrice">
+      <app-input variant="primary" id="maxPrice" [type]="'number'" [control]="maxPrice" placeholder="Precio máximo"></app-input>
+    </app-form-field>
+
+    <!-- Cuartos mínimos -->
+    <app-form-field label="Cuartos mínimos" id="minRooms">
+      <app-input variant="primary" id="minRooms" [type]="'number'" [control]="minRooms" placeholder="Ej: 1"></app-input>
+    </app-form-field>
+
+    <!-- Cuartos máximos -->
+    <app-form-field label="Cuartos máximos" id="maxRooms">
+      <app-input variant="primary" id="maxRooms" [type]="'number'" [control]="maxRooms" placeholder="Ej: 5"></app-input>
+    </app-form-field>
+
+    <!-- Baños mínimos -->
+    <app-form-field label="Baños mínimos" id="minBathrooms">
+      <app-input variant="primary" id="minBathrooms" [type]="'number'" [control]="minBathrooms" placeholder="Ej: 1"></app-input>
+    </app-form-field>
+
+    <!-- Baños máximos -->
+    <app-form-field label="Baños máximos" id="maxBathrooms">
+      <app-input variant="primary" id="maxBathrooms" [type]="'number'" [control]="maxBathrooms" placeholder="Ej: 3"></app-input>
+    </app-form-field>
+
+    <!-- Botones de acción -->
+    <div class="modal-actions">
+      <app-button type="button" variant="primary"  [text]="'Aplicar'"  (click)="applyFilters()">Aplicar</app-button>
+      <app-button type="button" variant="primary"  [text]="'Cancelar'" (click)="closeExtrasModal()">Cancelar</app-button>
+    </div>
+  </app-modal>
+
+  <!-- Tabla de resultados -->
+  <app-table
+    [data]="homes"
+    [columns]="columns"
+    [currentPage]="currentPage"
+    [pageSize]="pageSize">
+  </app-table>
+
+  <!-- Paginación -->
+  <div class="homeFilterForm__pagination">
+    <app-pagination [pagination]="paginationData" (pageChanged)="goToPage($event)"></app-pagination>
+  </div>
+</form>

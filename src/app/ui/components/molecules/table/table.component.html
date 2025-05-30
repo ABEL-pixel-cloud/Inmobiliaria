@@ -8,7 +8,6 @@
           *ngFor="let column of columns">
           {{ column.header }}
         </th>
-        <th class="table-component__table-header">Acciones</th>
       </tr>
     </thead>
     <tbody class="table-component__table-body">
@@ -16,16 +15,18 @@
         class="table-component__table-row" 
         *ngFor="let item of data; let i = index">
         <td class="table-component__table-cell">
-          #CAT-22500{{ currentPage * pageSize + i + 1 }}
+          #CAT-{{ currentPage * pageSize + i + 1 }}
         </td>
-        <td 
-          class="table-component__table-cell" 
-          *ngFor="let column of columns">
-          {{ item[column.field] }}
-        </td>
-        <td class="table-component__table-cell">
-          <app-icon iconName="🗑️"></app-icon>
-        </td>
+        <td class="table-component__table-cell" *ngFor="let column of columns">
+  <ng-container [ngSwitch]="column.field">
+    <span *ngSwitchCase="'price'">
+      {{ item[column.field] | currency:'COP':'symbol':'1.0-0' }}
+    </span>
+    <span *ngSwitchDefault>
+      {{ item[column.field] }}
+    </span>
+  </ng-container>
+</td>
       </tr>
     </tbody>
   </table>

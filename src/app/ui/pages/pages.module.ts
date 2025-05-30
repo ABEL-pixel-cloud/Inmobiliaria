@@ -19,6 +19,9 @@ import { CreatePublishHomesComponent } from './seller/create-publish-homes/creat
 
 
 
+
+
+
 @NgModule({
   declarations: [
     CreateCategoryComponent,
@@ -26,6 +29,10 @@ import { CreatePublishHomesComponent } from './seller/create-publish-homes/creat
     CreateUbicationComponent,
     CreateUsersComponent,
     CreatePublishHomesComponent,
+  
+    
+    
+  
   ],
   imports: [
     CommonModule,

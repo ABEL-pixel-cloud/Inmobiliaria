@@ -13,7 +13,7 @@ sidebarItems: sidebarItem[] = [
   { label: 'Categorías', iconPath: '/assets/images/etiqueta.png', route: '/admin/create-category' },
   { label: 'Ubicaciones', iconPath: '/assets/images/etiqueta.png', route: '/admin/create-ubication' },
   { label: 'Propiedades', iconPath: '/assets/images/home.png' }, // sin ruta
-  { label: 'Usuarios', iconPath: '/assets/images/usuario.png', route: '/admin/create-user' },
+  { label: 'Usuarios', iconPath: '/assets/images/usuario.png', route: '/admin/create-users' },
   { label: 'Configuración', iconPath: '/assets/images/configuracion.png' }
 ];
 }

@@ -17,11 +17,12 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { AtomsComponent } from './ui/components/atoms/atoms.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     AtomsComponent,
-    OrganismsComponent,
     OrganismsComponent,
 
   ],
@@ -36,10 +37,11 @@ import { AtomsComponent } from './ui/components/atoms/atoms.component';
     LayoutsModule,
     PagesModule,
     BrowserAnimationsModule,
-    NgSelectModule
+    NgSelectModule,
+    
     
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

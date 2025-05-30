@@ -11,7 +11,7 @@ export class InputComponent {
   @Input() type: string = "text";
   @Input() placeholder!: string;
   @Input() control!: FormControl;
-  @Input() variant: 'primary' = 'primary'; 
+  @Input() variant: 'primary' | 'secundary' = 'primary';
   @Input() maxlength?: number; 
   @Input() min?: number;
   @Input() max?: number;

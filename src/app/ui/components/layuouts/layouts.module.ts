@@ -12,7 +12,8 @@ import { SellerLayoutComponent } from './seller-layout/seller-layout.component';
 @NgModule({
   declarations: [
     AdminLayoutComponent,
-    SellerLayoutComponent
+    SellerLayoutComponent,
+
   ],
   imports: [
     CommonModule,

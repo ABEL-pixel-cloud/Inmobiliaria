@@ -12,6 +12,7 @@ import { TextComponent } from './text/text.component';
 import { IconComponent } from './icon/icon.component';
 import { SelectComponent } from './select/select.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ModalComponent } from './modal/modal.component';
 
 
 
@@ -25,6 +26,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     TextComponent,
     IconComponent,
     SelectComponent,
+    ModalComponent,
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     TextComponent,
     IconComponent,
     SelectComponent,
-    NgSelectModule
+    NgSelectModule,
+    ModalComponent,
 
   ]
 })

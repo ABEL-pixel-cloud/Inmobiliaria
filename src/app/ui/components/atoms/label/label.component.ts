@@ -8,5 +8,6 @@ import { Component,Input  } from '@angular/core';
 export class LabelComponent {
   @Input() label!: string;
   @Input() for!: string;
+  @Input() variant: 'primary' | 'secondary' | 'third' | 'danger' = 'primary';
 
 }

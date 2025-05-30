@@ -3,7 +3,7 @@ import { CreatePublishHomeComponent, validActivationDate } from './create-publis
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
-import { fakeAsync, tick,flush  } from '@angular/core/testing';
+
 
 import { CategoryService } from 'src/app/core/services/category.service';
 import { LocationService } from 'src/app/core/services/ubicationService/location.service';
@@ -14,6 +14,7 @@ import { OrganismsModule } from '../organisms.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CommonModule } from '@angular/common';
 import { FormControl } from '@angular/forms';
+import { PublishHomeEvent } from 'src/app/core/services/publishHomeService/PublishHomeEvent.service';
 
 
 describe('CreatePublishHomeComponent', () => {
@@ -38,6 +39,8 @@ describe('CreatePublishHomeComponent', () => {
     error: jest.fn()
   };
 
+ const mockPublishHomeEvent = { notifyPublishHomeCreated: jest.fn() };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CreatePublishHomeComponent],
@@ -46,7 +49,8 @@ describe('CreatePublishHomeComponent', () => {
         { provide: PublishHomeService, useValue: mockPublishService },
         { provide: ToastrService, useValue: mockToastr },
         { provide: CategoryService, useValue: mockCategoryService },
-        { provide: LocationService, useValue: mockLocationService }
+        { provide: LocationService, useValue: mockLocationService },
+        { provide: PublishHomeEvent, useValue: mockPublishHomeEvent }
       ]
     }).compileComponents();
 
@@ -54,6 +58,50 @@ describe('CreatePublishHomeComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
+  
+  it('debe notificar el evento después de crear con éxito', () => {
+    // Preparamos un formulario válido
+    component.publishForm.setValue({
+      name: 'Casa Bonita',
+      address: 'Calle 123',
+      description: 'Hermosa casa',
+      numberOfRooms: 2,
+      numberOfBathrooms: 1,
+      price: 50000,
+      category: 1,
+      location: 1,
+      activationDate: new Date().toISOString().split('T')[0]
+    });
+
+    // Forzamos el retorno exitoso
+    mockPublishService.createPublishHome.mockReturnValue(of({}));
+    component.createPublishHome();
+
+    expect(mockPublishHomeEvent.notifyPublishHomeCreated).toHaveBeenCalled();
+  });
+
+  it('debe asignar errorMessage si falla la creación', () => {
+    // Preparamos un formulario válido
+    component.publishForm.setValue({
+      name: 'Casa Bonita',
+      address: 'Calle 123',
+      description: 'Hermosa casa',
+      numberOfRooms: 2,
+      numberOfBathrooms: 1,
+      price: 50000,
+      category: 1,
+      location: 1,
+      activationDate: new Date().toISOString().split('T')[0]
+    });
+
+    // Forzamos un error
+    mockPublishService.createPublishHome.mockReturnValue(throwError(() => new Error('Server error')));
+    component.createPublishHome();
+
+    expect(component.errorMessage).toBe('error al crear publicacion');
+  });
+
 
   it('debe crear el componente', () => {
     expect(component).toBeTruthy();
@@ -131,55 +179,6 @@ it('debe llamar a normalizeName cuando se crea la publicación', () => {
     expect(mockToastr.success).toHaveBeenCalledWith('Publicación creada con éxito');
   });
 
-it('should show toastr error when createPublishHome service call fails', fakeAsync(() => {
-  // Llenar el formulario con valores válidos
-  component.publishForm.patchValue({
-    name: 'Casa Bonita',
-    address: 'Calle 123',
-    description: 'Muy linda',
-    numberOfRooms: 3,
-    numberOfBathrooms: 2,
-    price: 150000,
-    category: 1,       // Asegúrate que category y location sean valores válidos (id o lo que corresponda)
-    location: 1,
-    activationDate: '2025-05-25'  // Debe ser un string en formato 'YYYY-MM-DD' para que el validador funcione
-  });
-
-  // Mockear que el servicio lance un error
-  const error = new Error('Error al crear la publicación');
-  mockPublishService.createPublishHome.mockReturnValue(throwError(() => error));
-
-  // Ejecutar el método
-  component.createPublishHome();
-  tick();
-
-  // Verificar que toastr.error fue llamado con el mensaje esperado
-  expect(mockToastr.error).toHaveBeenCalledWith('Error al crear la publicación');
-}));
-
-it('should show toastr error when createPublishHome service call fails', fakeAsync(() => {
-  component.publishForm.patchValue({
-    name: 'Casa Bonita',
-    address: 'Calle 123',
-    description: 'Muy linda',
-    numberOfRooms: 3,
-    numberOfBathrooms: 2,
-    price: 150000,
-    category: 1,
-    location: 1,
-    activationDate: '2025-05-25'
-  });
-
-  const error = new Error('Error al crear la publicación');
-  mockPublishService.createPublishHome.mockReturnValue(throwError(() => error));
-
-  component.createPublishHome();
-
-  // Asegurar que se ejecutan todas las tareas asíncronas
-  flush();
-
-  expect(mockToastr.error).toHaveBeenCalledWith('Error al crear la publicación');
-}));
 it('debe prevenir entrada de caracteres inválidos', () => {
   const event = new KeyboardEvent('keydown', { key: 'e' });
   const preventDefaultSpy = jest.spyOn(event, 'preventDefault');
@@ -239,4 +238,6 @@ it('debe mostrar error si falla al cargar ubicaciones', () => {
     const control = new FormControl(formatted, [validActivationDate()]);
     expect(control.errors).toEqual({ futureDate: true });
   });
+
+
 });
